@@ -15,6 +15,16 @@ const ComponentsStyles = StyleSheet.create({
   logo: {
     width: 160,
   },
+  forceOnTopNavBar: {
+      justifyContent: 'center',
+      position: 'absolute',
+      top: 35,
+      left: 0
+  },
+  centeredLogo: {
+    width: 200,
+    alignSelf: 'center',
+  },
   navBarProfile: {
     width: 40,
     height: 40,

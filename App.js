@@ -11,7 +11,7 @@ function App() {
     profilePage: undefined
   }
 
-  const [page, setPage] = useState("mainPage");
+  const [page, setPage] = useState("loginRegisterPage");
   return (
     <View style={Styles.root}>
       {pages[page]}

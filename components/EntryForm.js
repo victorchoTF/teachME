@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { RadioButton } from 'react-native-paper';
 import ComponentsStyles from './ComponentsStyles';
 
 const REGISTER_URL = "create_user";
@@ -15,6 +16,7 @@ function EntryForm({
 }) {
   const [response, setResponse] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
+  const [checked, setChecked] = useState('');
 
   const onSubmit = () => {
     // Implement form submission logic here
@@ -25,11 +27,21 @@ function EntryForm({
       <Text style={ComponentsStyles.formTitle}>{title}</Text>
       {fields.map(field => (
         <View key={field}>
-          <TextInput
-            style={[ComponentsStyles.inputField, fieldErrors[field] && ComponentsStyles.errorBorder]}
-            placeholder={field}
-            autoCompleteType="off"
-          />
+          {/* TODO: Apply styling */}
+          {field.includes("|") 
+          ? 
+            <RadioButton.Group onValueChange={newValue => setChecked(newValue)} value={checked}>
+              {field.split("|").map((f, index) => (
+                <RadioButton.Item label={f} value={f} key={f + index} />
+              ))}
+            </RadioButton.Group> 
+          :
+            <TextInput
+              style={[ComponentsStyles.inputField, fieldErrors[field] && ComponentsStyles.errorBorder]}
+              placeholder={field}
+              autoCompleteType="off"
+            />
+          }
           {fieldErrors[field] && (
             <Text style={ComponentsStyles.error}>
               {fieldErrors[field]}
