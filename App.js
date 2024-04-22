@@ -3,15 +3,16 @@ import { View, StyleSheet } from 'react-native';
 import LoginRegisterPage from './pages/LoginRegisterPage';
 import MainPage from './pages/MainPage';
 import ColorPallete from './ColorPallete';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const pages = {
     loginRegisterPage: <LoginRegisterPage />,
     mainPage: <MainPage />,
-    profilePage: undefined
+    profilePage: <ProfilePage />
   }
 
-  const [page, setPage] = useState("loginRegisterPage");
+  const [page, setPage] = useState("profilePage");
   return (
     <View style={Styles.root}>
       {pages[page]}

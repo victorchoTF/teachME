@@ -118,18 +118,29 @@ const ComponentsStyles = StyleSheet.create({
     textAlign: 'justify',
     gap: 10,
     width: '75%',
+    alignSelf: 'flex-start',
   },
-  profileText: {
+  teacherText: {
     color: ColorPallete.dark,
     fontWeight: 'bold',
     textAlign: 'justify',
   },
-  profilePicture: {
+  profileText: {
+    color: ColorPallete.dark,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  teacherPicture: {
     width: 50,
     height: 70,
     margin: 10,
   },
-  profileInfo: {
+  profilePicture: {
+    width: 100,
+    height: 150,
+    margin: 10,
+  },
+  teacherInfo: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -142,6 +153,10 @@ const ComponentsStyles = StyleSheet.create({
     backgroundColor: ColorPallete.secondaryBlue,
     borderRadius: 10,
     paddingVertical: 15
+  },
+  debugBorder: {
+    borderColor: 'red',
+    borderWidth: 3,
   }
 });
 
