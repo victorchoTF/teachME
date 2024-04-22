@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import ComponentsStyles from './ComponentsStyles';
 import ColorPallete from '../ColorPallete';
-
-const REGISTER_URL = "create_user";
-const LOGIN_URL = "login_user";
 
 function EntryForm({
   formType,
@@ -15,13 +12,16 @@ function EntryForm({
   goToFunc,
   linkText
 }) {
-  const [response, setResponse] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
   const [checked, setChecked] = useState('');
+  const [formData, setFormData] = useState({});
 
-  const onSubmit = () => {
-    // Implement form submission logic here
-  };
+  function onSubmit(){
+    if (checked)
+      formData.profileType = checked;
+
+    console.log(formData);
+  }
 
   return (
     <View>
@@ -52,6 +52,8 @@ function EntryForm({
               style={[ComponentsStyles.inputField, fieldErrors[field] && ComponentsStyles.errorBorder]}
               placeholder={field}
               autoCompleteType="off"
+              onChangeText={text => setFormData({...formData, [field]: text})}
+              secureTextEntry={field.toLowerCase().includes('password') ? true : false}
             />
           }
           {fieldErrors[field] && (
