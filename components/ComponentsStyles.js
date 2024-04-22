@@ -10,7 +10,14 @@ const ComponentsStyles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     alignItems: 'center',
-    backgroundColor: ColorPallete.green
+    backgroundColor: ColorPallete.green,
+    zIndex: 1
+  },
+  smallNavBar:{
+    justifyContent: 'center',
+      position: 'absolute',
+      top: 5,
+      left: 0
   },
   logo: {
     width: 160,
@@ -38,6 +45,18 @@ const ComponentsStyles = StyleSheet.create({
     backgroundColor: ColorPallete.light,
     color: 'rgb(12, 41, 65)',
     paddingHorizontal: 10,
+  },
+  radioButtonsHolder: {
+    width: '100',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  radioButtonField: {
+    width: 130,
+    color: ColorPallete.dark,
+    backgroundColor: ColorPallete.mainBlue,
+    
   },
   errorBorder: {
     borderColor: ColorPallete.error,

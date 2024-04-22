@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Keyboard } from 'react-native';
 import NavBar from '../components/NavBar';
 import EntryForm from '../components/EntryForm';
 import PagesStyles from './PagesStyles';
 
 function LoginRegisterPage(){
-    const [loging, setLoging] = useState(true);
     const registerFields = [
         "First name",
         "Last name",
@@ -21,6 +20,8 @@ function LoginRegisterPage(){
         "Password"
     ];
 
+    const [loging, setLoging] = useState(true);
+
     return (
         <View style={PagesStyles.formHolder}>
             <NavBar />
@@ -31,7 +32,7 @@ function LoginRegisterPage(){
                     fields={loginFields}
                     labelText="Don't have an account?"
                     postURL='#'
-                    goToFunc={() => setLoging(false)}
+                    goToFunc={() => {Keyboard.dismiss(); setTimeout(() => setLoging(false), 20);}}
                     linkText="Create one"
                 />
             :
@@ -41,7 +42,7 @@ function LoginRegisterPage(){
                     fields={registerFields}
                     labelText="Already have an account?"
                     postURL='#'
-                    goToFunc={() => setLoging(true)}
+                    goToFunc={() => {Keyboard.dismiss(); setTimeout(() => setLoging(true), 20);}}
                     linkText="Log in"
                 />
             }

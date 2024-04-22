@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import ComponentsStyles from './ComponentsStyles';
+import ColorPallete from '../ColorPallete';
 
 const REGISTER_URL = "create_user";
 const LOGIN_URL = "login_user";
@@ -27,14 +28,25 @@ function EntryForm({
       <Text style={ComponentsStyles.formTitle}>{title}</Text>
       {fields.map(field => (
         <View key={field}>
-          {/* TODO: Apply styling */}
           {field.includes("|") 
           ? 
-            <RadioButton.Group onValueChange={newValue => setChecked(newValue)} value={checked}>
-              {field.split("|").map((f, index) => (
-                <RadioButton.Item label={f} value={f} key={f + index} />
-              ))}
-            </RadioButton.Group> 
+            <RadioButton.Group 
+             onValueChange={newValue => setChecked(newValue)} 
+             value={checked}
+             >
+              <View style={ComponentsStyles.radioButtonsHolder}>
+                {field.split("|").map((f, index) => (
+                  <RadioButton.Item 
+                  label={f} 
+                  value={f} 
+                  key={f + index}
+                  color={ColorPallete.green}
+                  uncheckedColor={ColorPallete.light}
+                  style={ComponentsStyles.radioButtonField}
+                  />
+                ))}
+              </View>
+            </RadioButton.Group>
           :
             <TextInput
               style={[ComponentsStyles.inputField, fieldErrors[field] && ComponentsStyles.errorBorder]}
