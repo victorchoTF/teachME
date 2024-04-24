@@ -81,6 +81,34 @@ const ComponentsStyles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 10,
   },
+  dayButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 25
+  },
+  dayButtonSelected: {
+    backgroundColor: ColorPallete.secondaryBlue
+  },
+  dayContainer:{
+    display: 'flex',
+    gap: -5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  weekContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: ColorPallete.green,
+    borderRadius: 15,
+    width: '95%'
+  },
+  datePicker: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10
+  },
   buttonText: {
     fontWeight: 'bold',
     color: ColorPallete.dark,
@@ -119,28 +147,27 @@ const ComponentsStyles = StyleSheet.create({
     gap: 10,
     width: '75%',
     alignSelf: 'flex-start',
+    paddingBottom: 5
   },
-  teacherText: {
+  profileText: {
     color: ColorPallete.dark,
     fontWeight: 'bold',
     textAlign: 'justify',
   },
-  profileText: {
-    color: ColorPallete.dark,
-    fontSize: 20,
-    fontWeight: 'bold',
+  contactText: {
+    fontStyle: 'italic'
   },
   teacherPicture: {
     width: 50,
-    height: 70,
+    height: 75,
     margin: 10,
   },
   profilePicture: {
-    width: 100,
-    height: 150,
-    margin: 10,
+    width: 80,
+    height: 120,
+    margin: 5,
   },
-  teacherInfo: {
+  profileInfo: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -154,10 +181,30 @@ const ComponentsStyles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15
   },
+  contactInfo: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    borderTopColor: ColorPallete.mainBlue,
+    borderTopWidth: 2,
+    borderRadius: 15,
+    paddingTop: 5,
+    fontStyle: 'italic'
+  },
+  icon: {
+    width: 20,
+    height: 'auto'
+  },
+  imageLabelPair: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    justifyContent: 'center'
+  },
   debugBorder: {
     borderColor: 'red',
-    borderWidth: 3,
-  }
+    borderWidth: 3
+  },
 });
 
 export default ComponentsStyles;

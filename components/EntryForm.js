@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import ComponentsStyles from './ComponentsStyles';
 import ColorPallete from '../ColorPallete';

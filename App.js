@@ -12,7 +12,7 @@ function App() {
     profilePage: <ProfilePage />
   }
 
-  const [page, setPage] = useState("profilePage");
+  const [page, setPage] = useState("mainPage");
   return (
     <View style={Styles.root}>
       {pages[page]}
