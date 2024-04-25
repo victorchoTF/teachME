@@ -212,6 +212,10 @@ const ComponentsStyles = StyleSheet.create({
     borderRadius: 15,
     width: '95%'
   },
+  datePickerButton: {
+    width: '65%',
+    backgroundColor: ColorPallete.secondaryBlue
+  },
   debugBorder: {
     borderColor: 'red',
     borderWidth: 3

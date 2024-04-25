@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import {View, Image, Keyboard} from 'react-native';
+import {View, Image, Keyboard, TouchableOpacity } from 'react-native';
 import ComponentsStyles from './ComponentsStyles';
 import Logo from '../assets/logo.png';
+import { usePageContext } from '../contexts/PageContext';
 
 function NavBar({ image }){
-
-    //
     const [smallNavBar, setSmallNavBar] = useState(false);
 
     useEffect(() => {
@@ -22,6 +21,8 @@ function NavBar({ image }){
           keyboardDidHideListener.remove();
         };
     }, []);
+
+    const { setPage } = usePageContext();
     
     return (
         <View style={
@@ -29,17 +30,21 @@ function NavBar({ image }){
             smallNavBar ? 
             {...ComponentsStyles.navBar, ...ComponentsStyles.smallNavBar} :
             {...ComponentsStyles.navBar, ...ComponentsStyles.forceOnTopNavBar}}>
-            <Image 
-             source={Logo} 
-             style={image ? ComponentsStyles.logo : ComponentsStyles.centeredLogo} 
-             resizeMode='contain'
-            />
+            <TouchableOpacity onPress={() => setPage("mainPage")}>
+                <Image 
+                source={Logo} 
+                style={image ? ComponentsStyles.logo : ComponentsStyles.centeredLogo} 
+                resizeMode='contain'
+                />
+            </TouchableOpacity>
             {
             image &&
-            <Image 
-             source={{ uri: image }} 
-             style={ComponentsStyles.navBarProfile} 
-            />
+            <TouchableOpacity onPress={() => setPage("profilePage")}>
+                <Image 
+                source={{ uri: image }} 
+                style={ComponentsStyles.navBarProfile} 
+                />
+            </TouchableOpacity>
             }
         </View>
     );

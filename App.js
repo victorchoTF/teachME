@@ -4,21 +4,29 @@ import LoginRegisterPage from './pages/LoginRegisterPage';
 import MainPage from './pages/MainPage';
 import ColorPallete from './ColorPallete';
 import ProfilePage from './pages/ProfilePage';
+import { PageProvider, usePageContext } from './contexts/PageContext';
 
 function App() {
+  return (
+    <PageProvider>
+      <View style={Styles.root}>
+          <PageContent />
+      </View>
+    </PageProvider>
+  );
+}
+
+const PageContent = () => {
   const pages = {
     loginRegisterPage: <LoginRegisterPage />,
     mainPage: <MainPage />,
     profilePage: <ProfilePage />
-  }
+  };
 
-  const [page, setPage] = useState("mainPage");
-  return (
-    <View style={Styles.root}>
-      {pages[page]}
-    </View>
-  );
-}
+  const { page } = usePageContext();
+
+  return pages[page];
+};
 
 const Styles = StyleSheet.create({
   root: {

@@ -4,10 +4,9 @@ import ComponentsStyles from "./ComponentsStyles";
 import LessonsPicker from "./LessonsPicker";
 import { LessonProvider } from "../contexts/LessonContext";
 import { useDateContext } from "../contexts/DateContext";
+import LessonsList from "./LessonsList";
 
-function DatePicker(){
-    // Fix this issue
-
+function DatePicker({ fixed }){
     const [selectedDay, setSelectedDay] = useState("Mon");
     const { dates } = useDateContext();
 
@@ -43,7 +42,12 @@ function DatePicker(){
                     </View>
                 ))}
             </View>
-            {
+            {   
+                fixed ? 
+                // Continue implementing when backend is here
+                <LessonsList />
+                :
+
                 dates.map((date, index) => (
                     <View key={date.day + date.number + index}>
                         <LessonProvider pickedLessonsData={date.lessons}>
@@ -55,14 +59,16 @@ function DatePicker(){
                     </View>
                     
             ))}
-            <TouchableOpacity
-                onPress={() => console.log(dates)}
-                style={ComponentsStyles.button}
-            >
-                <Text style={ComponentsStyles.buttonText}>
-                    Submit
-                </Text>
-            </TouchableOpacity>  
+            {!fixed && 
+                <TouchableOpacity
+                    onPress={() => console.log(dates)}
+                    style={{...ComponentsStyles.button, ...ComponentsStyles.datePickerButton}}
+                >
+                    <Text style={ComponentsStyles.buttonText}>
+                        Submit
+                    </Text>
+                </TouchableOpacity>  
+            }
         </View>
     );
 }
