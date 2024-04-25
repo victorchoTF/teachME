@@ -81,34 +81,6 @@ const ComponentsStyles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 10,
   },
-  dayButton: {
-    width: 30,
-    height: 30,
-    borderRadius: 25
-  },
-  dayButtonSelected: {
-    backgroundColor: ColorPallete.secondaryBlue
-  },
-  dayContainer:{
-    display: 'flex',
-    gap: -5,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  weekContainer:{
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    backgroundColor: ColorPallete.green,
-    borderRadius: 15,
-    width: '95%'
-  },
-  datePicker: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10
-  },
   buttonText: {
     fontWeight: 'bold',
     color: ColorPallete.dark,
@@ -185,11 +157,13 @@ const ComponentsStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    paddingTop: 5,
+    fontStyle: 'italic'
+  },
+  expandableView: {
     borderTopColor: ColorPallete.mainBlue,
     borderTopWidth: 2,
     borderRadius: 15,
-    paddingTop: 5,
-    fontStyle: 'italic'
   },
   icon: {
     width: 20,
@@ -200,6 +174,43 @@ const ComponentsStyles = StyleSheet.create({
     flexDirection: 'row',
     gap: 5,
     justifyContent: 'center'
+  },
+  dayButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 25
+  },
+  dayButtonSelected: {
+    backgroundColor: ColorPallete.secondaryBlue
+  },
+  dayContainer:{
+    display: 'flex',
+    gap: -5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  lessonsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  weekContainer:{
+    gap: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  datePicker: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 15,
+    backgroundColor: ColorPallete.green,
+    borderRadius: 15,
+    width: '95%'
   },
   debugBorder: {
     borderColor: 'red',

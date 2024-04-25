@@ -1,27 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileCard from './ProfileCard';
 import { View, TouchableOpacity } from 'react-native';
 import ComponentsStyles from './ComponentsStyles';
 import DatePicker from './DatePicker';
-
+import ContactInfo from './ContactInfo';
+import { DateProvider } from '../contexts/DateContext';
+ 
 function TeacherCard({ name, bio, email, phone, image }) {
+  const [expanded, setExpanded] = useState(false);
+
   // should be fethed from somewhere
-  const days = {
-    "Mon": 1,
-    "Thu": 2,
-    "Wed": 3,
-    "Thi": 4,
-    "Fri": 5,
-    "Sat": 6,
-    "Sun": 7
-  }
+  const dates = [
+    {
+      day: "Mon",
+      number: 1,
+      lessons: {
+          "09:00": false, 
+          "10:00": false, 
+          "11:00": false, 
+          "12:00": false, 
+          "13:00": false
+        }
+    },
+    {
+      day: "Tue",
+      number: 2,
+      lessons: {
+        "09:00": false, 
+        "10:00": false, 
+        "11:00": false, 
+        "12:00": false, 
+        "13:00": false
+      }
+    },
+    {
+      day: "Wed",
+      number: 3,
+      lessons: {
+        "09:00": false, 
+        "10:00": false, 
+        "11:00": false, 
+        "12:00": false, 
+        "13:00": false
+      }
+    },
+    {
+      day: "Thu",
+      number: 4,
+      lessons: {
+        "09:00": false, 
+        "10:00": false, 
+        "11:00": false, 
+        "12:00": false, 
+        "13:00": false
+      }
+    },
+    {
+      day: "Fri",
+      number: 5,
+      lessons: {
+        "09:00": false, 
+        "10:00": false, 
+        "11:00": false, 
+        "12:00": false, 
+        "13:00": false
+      }
+    },
+    {
+      day: "Sat",
+      number: 6,
+      lessons: {
+        "09:00": false, 
+        "10:00": false, 
+        "11:00": false, 
+        "12:00": false, 
+        "13:00": false
+      }
+    },
+    {
+      day: "Sun",
+      number: 7,
+      lessons: {
+        "09:00": false, 
+        "10:00": false, 
+        "11:00": false, 
+        "12:00": false, 
+        "13:00": false
+      }
+    },
+  ];
 
   return (
     <View style={ComponentsStyles.teacherCard}>
-      <TouchableOpacity>
-        <ProfileCard name={name} bio={bio} email={email} phone={phone} image={image} />
+      <TouchableOpacity onPress={() => {setExpanded((prevState) => !prevState)}}>
+        <ProfileCard name={name} bio={bio} image={image} />
       </TouchableOpacity>
-      <DatePicker days={days}/>
+      {
+        expanded &&
+        <View style={ComponentsStyles.expandableView}>
+          <ContactInfo email={email} phone={phone}/>
+          <DateProvider datesData={dates}>
+            <DatePicker />
+          </DateProvider>
+        </View>
+      }
     </View>
   );
 }
