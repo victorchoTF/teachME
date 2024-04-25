@@ -8,9 +8,9 @@ function LoginRegisterPage(){
     const registerFields = [
         "First name",
         "Last name",
-        "Teacher|Student",
         "Email",
         "Phone number",
+        "Teacher|Student",
         "Password",
         "Confirm password",
     ];

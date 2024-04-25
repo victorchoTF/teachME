@@ -25,7 +25,8 @@ const PageContent = () => {
 
   const { page } = usePageContext();
 
-  return pages[page];
+  // return pages[page];
+  return <LoginRegisterPage />
 };
 
 const Styles = StyleSheet.create({

@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { View } from "react-native";
-import { Checkbox } from "react-native-paper";
+import { Checkbox, useTheme } from "react-native-paper";
 import { useLessonContext } from '../contexts/LessonContext';
 import { useDateContext } from "../contexts/DateContext";
 import ComponentsStyles from "./ComponentsStyles";
+import ColorPallete from "../ColorPallete";
 
 function LessonsPicker({ day }){
     function handleLessonToggle(lesson) {
@@ -15,6 +16,7 @@ function LessonsPicker({ day }){
 
     const { pickedLessons, setPickedLessons } = useLessonContext();
     const { setDates } = useDateContext();
+    const theme = useTheme();
 
     useEffect(() => {
         setDates(prevState => (
@@ -30,6 +32,12 @@ function LessonsPicker({ day }){
                         label={lesson}
                         status={bool ? 'checked' : 'unchecked'}
                         onPress={() => handleLessonToggle( lesson)}
+                        theme={{
+                            colors: {
+                                primary: ColorPallete.secondaryBlue,
+                                text: ColorPallete.dark,
+                            },
+                        }}
                     />
             ))}
         </View>

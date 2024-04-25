@@ -17,10 +17,52 @@ function EntryForm({
   const [formData, setFormData] = useState({});
 
   function onSubmit(){
+    function emptyFieldsErrorCheck(){
+      const errors = {};
+
+      for (let field of fields){      
+        if (field.includes("|")){
+          if (!checked)
+            errors[field] = "Profile type must be chosen";
+        continue;
+        }
+  
+        if (!formData[field])
+          errors[field] = `${field} must be given`;
+      }
+
+      return errors;
+    }
+
+    function passwordsMatchCheck(){
+      if (formType === "Log In")
+        return {}
+
+      console.log(formData["Password"] === formData["Confirm password"])
+      if (formData["Password"] === formData["Confirm password"])
+        return {}
+
+      return {"Confirm password": "Passwords do not match"}
+    }
+
     if (checked)
       formData.profileType = checked;
 
-    console.log(formData);
+    let errors = emptyFieldsErrorCheck();
+    
+    if (Object.keys(errors).length !== 0){
+      setFieldErrors(errors);
+      return;
+    }
+
+    errors = passwordsMatchCheck();
+
+    if (Object.keys(errors).length !== 0){
+      setFieldErrors(errors);
+      return;
+    }
+
+    setFieldErrors(errors); // if all checks are passed
   }
 
   return (
@@ -56,11 +98,11 @@ function EntryForm({
               secureTextEntry={field.toLowerCase().includes('password') ? true : false}
             />
           }
-          {fieldErrors[field] && (
+          {fieldErrors[field] && 
             <Text style={ComponentsStyles.error}>
               {fieldErrors[field]}
             </Text>
-          )}
+          }
         </View>
       ))}
       <TouchableOpacity
@@ -77,7 +119,8 @@ function EntryForm({
           {labelText}
         </Text>
         <TouchableOpacity 
-          onPress={goToFunc}>
+          onPress={() => {goToFunc(); setFieldErrors({}); setChecked('');}}
+        >
             <Text style={ComponentsStyles.linkNewAcc}>
               {linkText}
             </Text>
