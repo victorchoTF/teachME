@@ -7,14 +7,9 @@ import { useDateContext } from "../contexts/DateContext";
 
 function DatePicker(){
     // Fix this issue
-    // function onSubmit(){
-    //     setDates((prevState) => (
-    //         prevState.map(date => date.day === day ? { ...date, lessons: pickedLessons } : date)
-    //     ));
-    // }
 
     const [selectedDay, setSelectedDay] = useState("Mon");
-    const { dates, setDates } = useDateContext();
+    const { dates } = useDateContext();
 
     return (
         <View style={ComponentsStyles.datePicker}>
