@@ -30,6 +30,8 @@ function NavBar({ image }){
             smallNavBar ? 
             {...ComponentsStyles.navBar, ...ComponentsStyles.smallNavBar} :
             {...ComponentsStyles.navBar, ...ComponentsStyles.forceOnTopNavBar}}>
+                
+            {/* // Add a loged in check */}
             <TouchableOpacity onPress={() => setPage("mainPage")}>
                 <Image 
                 source={Logo} 

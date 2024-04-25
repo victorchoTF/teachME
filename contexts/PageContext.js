@@ -4,7 +4,7 @@ const PageContext = createContext();
 
 export const PageProvider = ({ children }) => {
 
-  const [page, setPage] = useState("mainPage");
+  const [page, setPage] = useState("loginRegisterPage");
 
   return (
     <PageContext.Provider value={{ page, setPage }}>
