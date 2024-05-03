@@ -5,13 +5,16 @@ import MainPage from './pages/MainPage';
 import ColorPallete from './ColorPallete';
 import ProfilePage from './pages/ProfilePage';
 import { PageProvider, usePageContext } from './contexts/PageContext';
+import { UserProvider } from './contexts/UserContext';
 
 function App() {
   return (
     <PageProvider>
-      <View style={Styles.root}>
-          <PageContent />
-      </View>
+      <UserProvider>
+        <View style={Styles.root}>
+            <PageContent />
+        </View>
+      </UserProvider>
     </PageProvider>
   );
 }

@@ -3,13 +3,13 @@ import { View, Keyboard } from 'react-native';
 import NavBar from '../components/NavBar';
 import EntryForm from '../components/EntryForm';
 import PagesStyles from './PagesStyles';
-import {usePageContext} from "../contexts/PageContext";
-
-const BASE_URL = "http://192.168.1.8:3000";
-const STUDENT_URL = "students";
+import { usePageContext } from "../contexts/PageContext";
+import { BASE_URL, STUDENT_URL } from '../endpoints';
+import { useUserContext } from '../contexts/UserContext';
 
 function LoginRegisterPage(){
     const {setPage} = usePageContext();
+    const {setUser} = useUserContext();
     const registerFields = [
         "First name",
         "Last name",
@@ -47,7 +47,9 @@ function LoginRegisterPage(){
                 })
             });
             if (response.ok){
-                console.log("USER CREATED SUCCESSFULLY");
+                const data = await response.json();
+                console.log(data);
+                setUser(data);
                 setPage("mainPage")
             }
         } catch (error) {
