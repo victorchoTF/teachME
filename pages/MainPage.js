@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import TeacherCard from "../components/TeacherCard";
 import NavBar from "../components/NavBar";
@@ -7,13 +8,21 @@ import { BASE_URL } from "../endpoints";
 
 const debugImage = "https://reactnative.dev/img/tiny_logo.png";
 function MainPage(){
-    async function getTeachers(){
-        const response = await fetch(`${BASE_URL}/teachers`)
+    const [teachers, setTeachers] = useState([]);
 
-        return response.ok && await response.json();
-    }
+    useEffect(() => {
+        async function fetchTeachers() {
+            try {
+                const response = await fetch(`${BASE_URL}/teachers`);
+                const data = await response.json();
+                setTeachers(data);
+            } catch (error) {
+                console.error("Error fetching teachers:", error);
+            }
+        }
 
-    const teachers = getTeachers();
+        fetchTeachers();
+    }, []);
 
     return (
         <ScrollView contentContainerStyle={PagesStyles.mainPage}>

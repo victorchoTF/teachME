@@ -33,7 +33,7 @@ function NavBar({ image }){
             {...ComponentsStyles.navBar, ...ComponentsStyles.smallNavBar} :
             {...ComponentsStyles.navBar, ...ComponentsStyles.forceOnTopNavBar}}>
                 
-            {user.id ? 
+            {user.id && user.profileType === "Student" ? 
                 <TouchableOpacity onPress={() => setPage("mainPage")}>
                     <Image 
                     source={Logo} 

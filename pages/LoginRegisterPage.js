@@ -27,7 +27,7 @@ function LoginRegisterPage(){
     ];
 
     async function onRegister(formData){
-        const response = await fetch(`${BASE_URL}/${formData.profileType.lower()}s`, {
+        const response = await fetch(`${BASE_URL}/${formData.profileType.toLowerCase()}s`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -45,7 +45,7 @@ function LoginRegisterPage(){
         if (response.ok){
             const data = await response.json();
             setUser(data);
-            setPage("mainPage")
+            formData.profileType === "Student" ? setPage("mainPage") : setPage("profilePage")
         }
     }
 
