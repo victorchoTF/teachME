@@ -3,9 +3,11 @@ import {View, Image, Keyboard, TouchableOpacity } from 'react-native';
 import ComponentsStyles from './ComponentsStyles';
 import Logo from '../assets/logo.png';
 import { usePageContext } from '../contexts/PageContext';
+import { useUserContext } from '../contexts/UserContext';
 
 function NavBar({ image }){
     const [smallNavBar, setSmallNavBar] = useState(false);
+    const {user} = useUserContext();
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
@@ -31,14 +33,21 @@ function NavBar({ image }){
             {...ComponentsStyles.navBar, ...ComponentsStyles.smallNavBar} :
             {...ComponentsStyles.navBar, ...ComponentsStyles.forceOnTopNavBar}}>
                 
-            {/* // Add a loged in check */}
-            <TouchableOpacity onPress={() => setPage("mainPage")}>
+            {user.id ? 
+                <TouchableOpacity onPress={() => setPage("mainPage")}>
+                    <Image 
+                    source={Logo} 
+                    style={image ? ComponentsStyles.logo : ComponentsStyles.centeredLogo} 
+                    resizeMode='contain'
+                    />
+                </TouchableOpacity>
+            :
                 <Image 
-                source={Logo} 
-                style={image ? ComponentsStyles.logo : ComponentsStyles.centeredLogo} 
-                resizeMode='contain'
+                    source={Logo} 
+                    style={image ? ComponentsStyles.logo : ComponentsStyles.centeredLogo} 
+                    resizeMode='contain'
                 />
-            </TouchableOpacity>
+            }
             {
             image &&
             <TouchableOpacity onPress={() => setPage("profilePage")}>

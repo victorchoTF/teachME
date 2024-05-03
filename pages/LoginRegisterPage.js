@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 import EntryForm from '../components/EntryForm';
 import PagesStyles from './PagesStyles';
 import { usePageContext } from "../contexts/PageContext";
-import { BASE_URL, STUDENT_URL } from '../endpoints';
+import { BASE_URL } from '../endpoints';
 import { useUserContext } from '../contexts/UserContext';
 
 function LoginRegisterPage(){
@@ -27,33 +27,25 @@ function LoginRegisterPage(){
     ];
 
     async function onRegister(formData){
-        if (formData.profileType === "Teacher")
-            return;
-
-        try{
-            const response = await fetch(`${BASE_URL}/${STUDENT_URL}`, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    first_name: formData["First name"],
-                    last_name: formData["Last name"],
-                    phone: formData["Phone number"],
-                    email: formData["Email"],
-                    bio: formData["Bio"],
-                    password: formData["Password"]
-                })
-            });
-            if (response.ok){
-                const data = await response.json();
-                console.log(data);
-                setUser(data);
-                setPage("mainPage")
-            }
-        } catch (error) {
-            console.log("Error fetching data:", error);
+        const response = await fetch(`${BASE_URL}/${formData.profileType.lower()}s`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                first_name: formData["First name"],
+                last_name: formData["Last name"],
+                phone: formData["Phone number"],
+                email: formData["Email"],
+                bio: formData["Bio"],
+                password: formData["Password"]
+            })
+        });
+        if (response.ok){
+            const data = await response.json();
+            setUser(data);
+            setPage("mainPage")
         }
     }
 

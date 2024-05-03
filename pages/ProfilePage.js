@@ -6,16 +6,15 @@ import DatePicker from "../components/DatePicker";
 import { DateProvider } from "../contexts/DateContext";
 import ComponentsStyles from "../components/ComponentsStyles";
 import { usePageContext } from "../contexts/PageContext";
-import { BASE_URL, STUDENT_URL } from "../endpoints";
+import { BASE_URL } from "../endpoints";
 import { useUserContext } from "../contexts/UserContext";
 
 function ProfilePage(){
   const {setPage} = usePageContext();
   const {user, setUser} = useUserContext();
-  console.log(user.id);
   function onDelete(){
     function deleteUser(){
-      fetch(`${BASE_URL}/${STUDENT_URL}/${user.id}`, {
+      fetch(`${BASE_URL}/${user.profileType}s/${user.id}`, {
         method: "DELETE"
       }).then(response => !response.ok ?  
         Alert.alert(
