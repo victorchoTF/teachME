@@ -16,7 +16,6 @@ function LessonsPicker({ day }){
 
     const { pickedLessons, setPickedLessons } = useLessonContext();
     const { setDates } = useDateContext();
-    const theme = useTheme();
 
     useEffect(() => {
         setDates(prevState => (

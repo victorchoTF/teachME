@@ -10,7 +10,8 @@ function EntryForm({
   fields,
   labelText,
   goToFunc,
-  linkText
+  linkText,
+  reqFunc
 }) {
   const [fieldErrors, setFieldErrors] = useState({});
   const [checked, setChecked] = useState('');
@@ -37,8 +38,7 @@ function EntryForm({
     function passwordsMatchCheck(){
       if (formType === "Log In")
         return {}
-
-      console.log(formData["Password"] === formData["Confirm password"])
+      
       if (formData["Password"] === formData["Confirm password"])
         return {}
 
@@ -62,7 +62,8 @@ function EntryForm({
       return;
     }
 
-    setFieldErrors(errors); // if all checks are passed
+    setFieldErrors(errors);
+    reqFunc(formData);
   }
 
   return (
@@ -96,6 +97,8 @@ function EntryForm({
               autoCompleteType="off"
               onChangeText={text => setFormData({...formData, [field]: text})}
               secureTextEntry={field.toLowerCase().includes('password') ? true : false}
+              multiline = {field.toLowerCase() === "bio" ? true : false}
+              numberOfLines={field.toLowerCase() === "bio" ? 2 : 1}
             />
           }
           {fieldErrors[field] && 

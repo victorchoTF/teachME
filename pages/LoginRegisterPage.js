@@ -3,22 +3,57 @@ import { View, Keyboard } from 'react-native';
 import NavBar from '../components/NavBar';
 import EntryForm from '../components/EntryForm';
 import PagesStyles from './PagesStyles';
+import {usePageContext} from "../contexts/PageContext";
+
+const BASE_URL = "http://192.168.1.8:3000";
+const STUDENT_URL = "students";
 
 function LoginRegisterPage(){
+    const {setPage} = usePageContext();
     const registerFields = [
         "First name",
         "Last name",
         "Email",
         "Phone number",
-        "Teacher|Student",
+        "Bio",
         "Password",
         "Confirm password",
+        "Teacher|Student",
     ];
 
     const loginFields = [
         "Email",
         "Password"
     ];
+
+    async function onRegister(formData){
+        if (formData.profileType === "Teacher")
+            return;
+
+        try{
+            const response = await fetch(`${BASE_URL}/${STUDENT_URL}`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    first_name: formData["First name"],
+                    last_name: formData["Last name"],
+                    phone: formData["Phone number"],
+                    email: formData["Email"],
+                    bio: formData["Bio"],
+                    password: formData["Password"]
+                })
+            });
+            if (response.ok){
+                console.log("USER CREATED SUCCESSFULLY");
+                setPage("mainPage")
+            }
+        } catch (error) {
+            console.log("Error fetching data:", error);
+        }
+    }
 
     const [loging, setLoging] = useState(true);
 
@@ -44,6 +79,7 @@ function LoginRegisterPage(){
                     postURL='#'
                     goToFunc={() => {Keyboard.dismiss(); setTimeout(() => setLoging(true), 20);}}
                     linkText="Log in"
+                    reqFunc={onRegister}
                 />
             }
         </View>

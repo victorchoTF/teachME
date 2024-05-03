@@ -38,7 +38,7 @@ const ComponentsStyles = StyleSheet.create({
     borderRadius: 20
   },
   inputField: {
-    width: '100',
+    maxWidth: 285,
     height: 40,
     marginVertical: 5,
     borderRadius: 10,
