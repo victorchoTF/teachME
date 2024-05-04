@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import ComponentsStyles from './ComponentsStyles';
 import ColorPallete from '../ColorPallete';
@@ -63,7 +63,14 @@ function EntryForm({
     }
 
     setFieldErrors(errors);
-    reqFunc(formData);
+    const responseError = reqFunc(formData);
+    
+    if (responseError){
+      Alert.alert(
+        title = `${formType} field error`,
+        message = responseError
+      )
+    }
   }
 
   return (

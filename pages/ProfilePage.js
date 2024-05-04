@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import PagesStyles from "./PagesStyles";
 import DatePicker from "../components/DatePicker";
+import ContactInfo from "../components/ContactInfo";
 import { DateProvider } from "../contexts/DateContext";
 import ComponentsStyles from "../components/ComponentsStyles";
 import { usePageContext } from "../contexts/PageContext";
@@ -14,7 +15,7 @@ function ProfilePage(){
   const {user, setUser} = useUserContext();
   function onDelete(){
     function deleteUser(){
-      fetch(`${BASE_URL}/${user.profileType}s/${user.id}`, {
+      fetch(`${BASE_URL}/${user.profileType.toLowerCase()}s/${user.id}`, {
         method: "DELETE"
       }).then(response => !response.ok ?  
         Alert.alert(
@@ -33,10 +34,6 @@ function ProfilePage(){
       buttons = [{text: "YES", onPress: deleteUser}, {text: "CANCEL"}])
   }
   const debugImage = "https://reactnative.dev/img/tiny_logo.png";
-  const name = "Name";
-  const bio = "Bio for Name, a professional who teaches students based on national curriculum guidelines within their specialist subject areas. Their duties include assigning homework, grading tests, documenting progress and keeping up with parent communication.";
-  const email = "student@gmail.com";
-  const phone = "0894567243";
 
     // should be fethed from somewhere (maybe can stay as a mask :)
   const dates = [
@@ -123,13 +120,16 @@ function ProfilePage(){
         <View style={PagesStyles.mainPage}>
             <NavBar image={debugImage}/>
             <ProfileCard 
-             name={name} 
-             bio={bio} 
-             email={email} 
-             phone={phone} 
+             name={`${user.first_name} ${user.last_name}`} 
+             bio={user.bio} 
+             email={user.email} 
+             phone={user.phone} 
              image={debugImage}
              profile
             />
+            <View styles={ComponentsStyles.topBorder}>
+              <ContactInfo email={email} phone={phone}/>
+            </View>
             <DateProvider datesData={dates}>
                 <DatePicker fixed />
             </DateProvider>

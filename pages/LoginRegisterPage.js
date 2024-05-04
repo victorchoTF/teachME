@@ -46,7 +46,10 @@ function LoginRegisterPage(){
             const data = await response.json();
             setUser(data);
             formData.profileType === "Student" ? setPage("mainPage") : setPage("profilePage")
+            return;
         }
+
+        return await response.text();
     }
 
     const [loging, setLoging] = useState(true);

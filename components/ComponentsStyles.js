@@ -160,7 +160,7 @@ const ComponentsStyles = StyleSheet.create({
     paddingTop: 5,
     fontStyle: 'italic'
   },
-  expandableView: {
+  topBorder: {
     borderTopColor: ColorPallete.mainBlue,
     borderTopWidth: 2,
     borderRadius: 15,

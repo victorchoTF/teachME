@@ -97,7 +97,7 @@ function TeacherCard({ name, bio, email, phone, image }) {
       </TouchableOpacity>
       {
         expanded &&
-        <View style={ComponentsStyles.expandableView}>
+        <View style={ComponentsStyles.topBorder}>
           <ContactInfo email={email} phone={phone}/>
           <DateProvider datesData={dates}>
             <DatePicker />
