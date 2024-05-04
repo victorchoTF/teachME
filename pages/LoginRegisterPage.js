@@ -52,6 +52,29 @@ function LoginRegisterPage(){
         return await response.text();
     }
 
+    async function onLogin(formData){
+        const response = await fetch(`${BASE_URL}$/${formData.profileType.toLowerCase()}s/login`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: formData["Email"],
+                password: formData["Password"]
+            })
+        });
+
+        if (response.ok){
+            const [data, profileType] = await response.json();
+            setUser(data);
+            profileType === "Student" ? setPage("mainPage") : setPage("profilePage")
+            return;
+        }
+
+        return await response.text();
+    }   
+
     const [loging, setLoging] = useState(true);
 
     return (
@@ -66,6 +89,7 @@ function LoginRegisterPage(){
                     postURL='#'
                     goToFunc={() => {Keyboard.dismiss(); setTimeout(() => setLoging(false), 20);}}
                     linkText="Create one"
+                    reqFunc={onLogin}
                 />
             :
                 <EntryForm 
