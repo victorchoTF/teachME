@@ -63,14 +63,17 @@ function EntryForm({
     }
 
     setFieldErrors(errors);
-    const responseError = reqFunc(formData);
+
+    reqFunc(formData).then(responseError => {
+      if (responseError){
+        Alert.alert(
+          title = `${formType} field error`,
+          message = responseError
+        )
+      }
+    });
     
-    if (responseError){
-      Alert.alert(
-        title = `${formType} field error`,
-        message = responseError
-      )
-    }
+    
   }
 
   return (

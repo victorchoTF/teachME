@@ -9,7 +9,7 @@ import { DateProvider } from '../contexts/DateContext';
 function TeacherCard({ name, bio, email, phone, image }) {
   const [expanded, setExpanded] = useState(false);
 
-  // should be fethed from somewhere
+  // should be fethed from somewhere (maybe can stay as a mask :)
   const dates = [
     {
       day: "Mon",

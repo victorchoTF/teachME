@@ -14,6 +14,7 @@ function ProfilePage(){
   const {setPage} = usePageContext();
   const {user, setUser} = useUserContext();
   function onDelete(){
+    // TODO: Clean users listed hours from the server
     function deleteUser(){
       fetch(`${BASE_URL}/${user.profileType.toLowerCase()}s/${user.id}`, {
         method: "DELETE"
@@ -35,7 +36,7 @@ function ProfilePage(){
   }
   const debugImage = "https://reactnative.dev/img/tiny_logo.png";
 
-    // should be fethed from somewhere (maybe can stay as a mask :)
+  // should be fethed from somewhere (maybe can stay as a mask :)
   const dates = [
     {
       day: "Mon",
@@ -117,25 +118,28 @@ function ProfilePage(){
   ];
 
     return (
-        <View style={PagesStyles.mainPage}>
+        <View style={PagesStyles.profilePage}>
             <NavBar image={debugImage}/>
-            <ProfileCard 
-             name={`${user.first_name} ${user.last_name}`} 
-             bio={user.bio} 
-             email={user.email} 
-             phone={user.phone} 
-             image={debugImage}
-             profile
-            />
-            <View styles={ComponentsStyles.topBorder}>
-              <ContactInfo email={email} phone={phone}/>
+            <View style={ComponentsStyles.profileContent}>
+              <ProfileCard 
+              name={`${user.first_name} ${user.last_name}`} 
+              bio={user.bio} 
+              image={debugImage}
+              profile
+              />
+              <View style={ComponentsStyles.topBorder}>
+                <ContactInfo email={user.email} phone={user.phone}/>
+              </View>
             </View>
             <DateProvider datesData={dates}>
                 <DatePicker fixed />
             </DateProvider>
             <TouchableOpacity
               onPress={onDelete}
-              style={ComponentsStyles.button}
+              style={{
+                ...ComponentsStyles.button,
+                ...ComponentsStyles.deleteProfileButton
+              }}
             >
               <Text style={ComponentsStyles.buttonText}>
                 Delete Profile

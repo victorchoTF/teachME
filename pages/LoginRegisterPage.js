@@ -44,7 +44,7 @@ function LoginRegisterPage(){
         });
         if (response.ok){
             const data = await response.json();
-            setUser(data);
+            setUser({...data, profileType: formData.profileType});
             formData.profileType === "Student" ? setPage("mainPage") : setPage("profilePage")
             return;
         }
@@ -53,7 +53,7 @@ function LoginRegisterPage(){
     }
 
     async function onLogin(formData){
-        const response = await fetch(`${BASE_URL}$/${formData.profileType.toLowerCase()}s/login`, {
+        const response = await fetch(`${BASE_URL}/login`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -66,9 +66,9 @@ function LoginRegisterPage(){
         });
 
         if (response.ok){
-            const [data, profileType] = await response.json();
+            const data = await response.json();
             setUser(data);
-            profileType === "Student" ? setPage("mainPage") : setPage("profilePage")
+            data.profileType === "Student" ? setPage("mainPage") : setPage("profilePage")
             return;
         }
 

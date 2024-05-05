@@ -216,9 +216,19 @@ const ComponentsStyles = StyleSheet.create({
     width: '65%',
     backgroundColor: ColorPallete.secondaryBlue
   },
+  deleteProfileButton: {
+    width: 150
+  },
+  profileContent: {
+    backgroundColor: ColorPallete.secondaryBlue,
+    borderRadius: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    marginHorizontal: 10,
+  },
   debugBorder: {
     borderColor: 'red',
-    borderWidth: 3
+    borderWidth: 3,
   },
 });
 

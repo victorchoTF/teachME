@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import ComponentsStyles from './ComponentsStyles';
 
-function ProfileCard({ name, bio, image, email, phone, profile}) {
+function ProfileCard({ name, bio, image, profile}) {
   return (
       <View style={ComponentsStyles.profileCard}>
         <Image 

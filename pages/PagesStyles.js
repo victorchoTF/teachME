@@ -17,6 +17,16 @@ const PagesStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: 35,
+    },
+    profilePage: {
+        display: 'flex',
+        width: '100%',
+        top: 0,
+        minHeight: '100%',
+        gap: 5,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: 35,
     }
 });
 
