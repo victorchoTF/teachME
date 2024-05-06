@@ -13,7 +13,7 @@ export const generateDates = () => {
     const number = date.getDate();
 
     const lessons = {
-      "09:00": false,
+      "9:00": false,
       "10:00": false,
       "11:00": false,
       "12:00": false,
