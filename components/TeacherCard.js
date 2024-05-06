@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProfileCard from './ProfileCard';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity} from 'react-native';
 import ComponentsStyles from './ComponentsStyles';
 import DatePicker from './DatePicker';
 import ContactInfo from './ContactInfo';
@@ -19,7 +19,7 @@ function TeacherCard({ name, bio, email, phone, image }) {
         <View style={ComponentsStyles.topBorder}>
           <ContactInfo email={email} phone={phone}/>
           <DateProvider datesData={generateDates()}>
-            <DatePicker />
+            <DatePicker teacherName={name} teacherEmail={email} colapseOnSubmit={() => setExpanded(false)}/>
           </DateProvider>
         </View>
       }

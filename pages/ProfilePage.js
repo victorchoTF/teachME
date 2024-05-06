@@ -4,7 +4,7 @@ import ProfileCard from "../components/ProfileCard";
 import PagesStyles from "./PagesStyles";
 import DatePicker from "../components/DatePicker";
 import ContactInfo from "../components/ContactInfo";
-import { DateProvider } from "../contexts/DateContext";
+import { DateProvider, generateDates } from "../contexts/DateContext";
 import ComponentsStyles from "../components/ComponentsStyles";
 import { usePageContext } from "../contexts/PageContext";
 import { BASE_URL } from "../endpoints";
@@ -36,87 +36,6 @@ function ProfilePage(){
   }
   const debugImage = "https://reactnative.dev/img/tiny_logo.png";
 
-  // should be fethed from somewhere (maybe can stay as a mask :)
-  const dates = [
-    {
-      day: "Mon",
-      number: 1,
-      lessons: {
-          "09:00": false, 
-          "10:00": false, 
-          "11:00": false, 
-          "12:00": false, 
-          "13:00": false
-        }
-    },
-    {
-      day: "Tue",
-      number: 2,
-      lessons: {
-        "09:00": false, 
-        "10:00": false, 
-        "11:00": false, 
-        "12:00": false, 
-        "13:00": false
-      }
-    },
-    {
-      day: "Wed",
-      number: 3,
-      lessons: {
-        "09:00": false, 
-        "10:00": false, 
-        "11:00": false, 
-        "12:00": false, 
-        "13:00": false
-      }
-    },
-    {
-      day: "Thu",
-      number: 4,
-      lessons: {
-        "09:00": false, 
-        "10:00": false, 
-        "11:00": false, 
-        "12:00": false, 
-        "13:00": false
-      }
-    },
-    {
-      day: "Fri",
-      number: 5,
-      lessons: {
-        "09:00": false, 
-        "10:00": false, 
-        "11:00": false, 
-        "12:00": false, 
-        "13:00": false
-      }
-    },
-    {
-      day: "Sat",
-      number: 6,
-      lessons: {
-        "09:00": false, 
-        "10:00": false, 
-        "11:00": false, 
-        "12:00": false, 
-        "13:00": false
-      }
-    },
-    {
-      day: "Sun",
-      number: 7,
-      lessons: {
-        "09:00": false, 
-        "10:00": false, 
-        "11:00": false, 
-        "12:00": false, 
-        "13:00": false
-      }
-    },
-  ];
-
     return (
         <View style={PagesStyles.profilePage}>
             <NavBar image={debugImage}/>
@@ -131,7 +50,7 @@ function ProfilePage(){
                 <ContactInfo email={user.email} phone={user.phone}/>
               </View>
             </View>
-            <DateProvider datesData={dates}>
+            <DateProvider datesData={generateDates()}>
                 <DatePicker fixed />
             </DateProvider>
             <TouchableOpacity
