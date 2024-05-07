@@ -5,7 +5,7 @@ import LessonsPicker from "./LessonsPicker";
 import { LessonProvider } from "../contexts/LessonContext";
 import { useDateContext } from "../contexts/DateContext";
 import { useUserContext } from "../contexts/UserContext";
-import LessonsList from "./LessonsList";
+import LessonInfo from "./LessonInfo";
 import { BASE_URL } from "../endpoints";
 
 function DatePicker({ teacherName, teacherEmail, colapseOnSubmit, fixed }){
@@ -89,22 +89,25 @@ function DatePicker({ teacherName, teacherEmail, colapseOnSubmit, fixed }){
                 ))}
             </View>
             {   
-                fixed ? 
-                <LessonsList />
-                :
-
                 dates.map((date, index) => (
-                    <View key={date.day + date.number + index}>
-                        <LessonProvider pickedLessonsData={date.lessons}>
-                            {
-                                selectedDay === date.day &&
-                                    <LessonsPicker day={date.day}/>
-                            }
-                        </LessonProvider>
+                    <View 
+                     key={date.day + date.number + index}
+                     style={ComponentsStyles.topBorderDark}>
+                        {
+                            fixed ?     
+                                selectedDay === date.day ? <LessonInfo day={date.day}/> : null
+                            :
+                                <LessonProvider pickedLessonsData={date.lessons}>
+                                    {
+                                        selectedDay === date.day ? 
+                                            <LessonsPicker day={date.day}/> : null
+                                    }
+                                </LessonProvider>
+                        }
                     </View>
                     
             ))}
-            {!fixed && 
+            {!fixed ?
                 <TouchableOpacity
                     onPress={submitLessonsData}
                     style={{...ComponentsStyles.button, ...ComponentsStyles.datePickerButton}}
@@ -113,6 +116,7 @@ function DatePicker({ teacherName, teacherEmail, colapseOnSubmit, fixed }){
                         Submit
                     </Text>
                 </TouchableOpacity>  
+                : null
             }
         </View>
     );

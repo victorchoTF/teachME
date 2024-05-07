@@ -163,11 +163,15 @@ const ComponentsStyles = StyleSheet.create({
   topBorder: {
     borderTopColor: ColorPallete.mainBlue,
     borderTopWidth: 2,
-    borderRadius: 15,
+  },
+  topBorderDark: {
+    borderTopColor: ColorPallete.secondaryBlue,
+    borderTopWidth: 2,
+    marginTop: -2
   },
   icon: {
     width: 20,
-    height: 'auto'
+    aspectRatio: 1
   },
   imageLabelPair: {
     display: 'flex',
@@ -210,10 +214,15 @@ const ComponentsStyles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: ColorPallete.green,
     borderRadius: 15,
-    width: '95%'
+    width: '95%',
+    paddingVertical: 10
   },
   datePickerButton: {
     width: '65%',
+    backgroundColor: ColorPallete.secondaryBlue
+  },
+  deleteLessonButton: {
+    width: '10%',
     backgroundColor: ColorPallete.secondaryBlue
   },
   deleteProfileButton: {
@@ -226,10 +235,17 @@ const ComponentsStyles = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 10,
   },
+  lessonTeacherPair: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10
+  },
   debugBorder: {
     borderColor: 'red',
     borderWidth: 3,
-  },
+  }
 });
 
 export default ComponentsStyles;

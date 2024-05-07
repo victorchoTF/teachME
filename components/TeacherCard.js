@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ProfileCard from './ProfileCard';
-import { View, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity, Alert } from 'react-native';
 import ComponentsStyles from './ComponentsStyles';
 import DatePicker from './DatePicker';
 import ContactInfo from './ContactInfo';
@@ -11,7 +11,6 @@ function TeacherCard({ name, bio, email, phone, image }) {
   const [prepDates, setPrepDates] = useState(generateDates());
 
   async function filterDates() {
-    console.log(`${BASE_URL}/lessons/teacher/${email}`);
     const response = await fetch(`${BASE_URL}/lessons/teacher/${email}`);
     if (!response.ok) {
         Alert.alert(
@@ -40,17 +39,19 @@ function TeacherCard({ name, bio, email, phone, image }) {
     setPrepDates(filteredDates);
   }
 
+  function filterAndSetExpand(){
+    filterDates();
+    setExpanded((prevState) => !prevState);
+  }
+
   const [expanded, setExpanded] = useState(false);
   return (
     <View style={ComponentsStyles.teacherCard}>
-      <TouchableOpacity onPress={() => {
-        filterDates()
-        .then(() => {setExpanded((prevState) => !prevState)});
-      }}>
+      <TouchableOpacity onPress={filterAndSetExpand}>
         <ProfileCard name={name} bio={bio} image={image} />
       </TouchableOpacity>
       {
-        expanded &&
+        expanded ?
         <View style={ComponentsStyles.topBorder}>
           <ContactInfo email={email} phone={phone}/>
           <DateProvider datesData={prepDates}>
@@ -60,6 +61,7 @@ function TeacherCard({ name, bio, email, phone, image }) {
              colapseOnSubmit={() => setExpanded(false)}/>
           </DateProvider>
         </View>
+        : null
       }
     </View>
   );

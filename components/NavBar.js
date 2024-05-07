@@ -49,13 +49,14 @@ function NavBar({ image }){
                 />
             }
             {
-            image &&
+            image ?
             <TouchableOpacity onPress={() => setPage("profilePage")}>
                 <Image 
                 source={{ uri: image }} 
                 style={ComponentsStyles.navBarProfile} 
                 />
             </TouchableOpacity>
+            : null
             }
         </View>
     );

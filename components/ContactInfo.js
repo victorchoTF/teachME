@@ -4,7 +4,7 @@ import emailIcon from '../assets/email.png';
 import phoneIcon from '../assets/phone.png';
 
 function ContactInfo({email, phone}){
-    return (
+  return (
     <View style={ComponentsStyles.contactInfo}>
         <View style={ComponentsStyles.imageLabelPair}>
           <Image 

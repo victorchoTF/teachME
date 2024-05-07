@@ -15,11 +15,11 @@ function InputField({ fieldName, error }) {
         autoCompleteType="off"
         secureTextEntry={fieldName.toLowerCase().includes("password")}
       />
-      {error && (
+      {error ? (
         <Text style={ComponentsStyles.error}>
           {fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required
         </Text>
-      )}
+      ) : null}
     </View>
   );
 }

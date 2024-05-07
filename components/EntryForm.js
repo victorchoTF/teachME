@@ -111,10 +111,11 @@ function EntryForm({
               numberOfLines={field.toLowerCase() === "bio" ? 2 : 1}
             />
           }
-          {fieldErrors[field] && 
+          {fieldErrors[field] ? 
             <Text style={ComponentsStyles.error}>
               {fieldErrors[field]}
             </Text>
+            : null
           }
         </View>
       ))}
