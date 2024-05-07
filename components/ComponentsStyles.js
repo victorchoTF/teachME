@@ -239,7 +239,7 @@ const ComponentsStyles = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 10,
   },
-  lessonTeacherPair: {
+  lessonUserPair: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -9,9 +9,9 @@ import LessonInfo from "./LessonInfo";
 import { BASE_URL } from "../endpoints";
 
 function DatePicker({ teacherName, teacherEmail, colapseOnSubmit, fixed }){
-    const [selectedDay, setSelectedDay] = useState("Mon");
     const { dates } = useDateContext();
     const { user } = useUserContext();
+    const [selectedDay, setSelectedDay] = useState(dates[0].day);
 
     function submitLessonsData(){
         const result = [];

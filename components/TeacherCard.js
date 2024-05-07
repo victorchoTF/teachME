@@ -11,7 +11,7 @@ function TeacherCard({ name, bio, email, phone, image }) {
   const [prepDates, setPrepDates] = useState(generateDates());
 
   async function filterDates() {
-    const response = await fetch(`${BASE_URL}/lessons/teacher/${email}`);
+    const response = await fetch(`${BASE_URL}/lessons/teacher/picker/${email}`);
     if (!response.ok) {
         Alert.alert(
             title="Error",

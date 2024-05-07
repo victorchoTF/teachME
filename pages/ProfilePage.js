@@ -17,13 +17,13 @@ function ProfilePage(){
   const [prepDates, setPrepDates] = useState(generateDates());
   const [areDatesFetched, setAreDatesFetched] = useState(false);
   function onDelete(){
-    // TODO: Complete for teachers
     function deleteRelatedLessons(){
-      fetch(`${BASE_URL}/lessons/${user.id}`, {
+      fetch(`${BASE_URL}/lessons/${user.profileType.toLowerCase()}/${user.id}`, {
         method: "DELETE"
       });
     }
     function deleteUser(){
+      deleteRelatedLessons();
       fetch(`${BASE_URL}/${user.profileType.toLowerCase()}s/${user.id}`, {
         method: "DELETE"
       }).then(response => !response.ok ?  
@@ -32,7 +32,6 @@ function ProfilePage(){
           message = "An error occurred and we could not delete your profile!"
         ) : null
        ).then(() => {
-          deleteRelatedLessons();
           setPage("loginRegisterPage"); 
           setUser({});
           });
@@ -45,7 +44,7 @@ function ProfilePage(){
   }
 
   async function fetchDates(){
-    const response = await fetch(`${BASE_URL}/lessons/student/${user.id}`);
+    const response = await fetch(`${BASE_URL}/lessons/${user.profileType.toLowerCase()}/${user.id}`);
 
     if (!response.ok) {
       Alert.alert(
@@ -56,6 +55,7 @@ function ProfilePage(){
     }
 
     const data = await response.json();
+    console.log(data);
     
     setPrepDates(prevPrepDates => {
       prevPrepDates.filter(date => {
@@ -68,7 +68,7 @@ function ProfilePage(){
           const lessonHour = parseInt(lessonTime.split(":")[0]) - Math.floor(serverTimezoneOffset / 60);
   
           if (date.number === lessonDay)
-            prepLessons[`${el.teacher_name} at ${lessonHour}:00`] = el.date;
+            prepLessons[`${el.username} at ${lessonHour}:00`] = el.date;
         });
   
         date.lessons = prepLessons;

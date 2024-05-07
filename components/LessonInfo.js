@@ -6,17 +6,17 @@ import { useUserContext } from "../contexts/UserContext";
 import { BASE_URL } from "../endpoints";
 
 function LessonInfo({ day }){
-    const { dates } = useDateContext();
+    const { dates, setDates } = useDateContext();
     const { user } = useUserContext();
 
-    function onDelete(lessonTeacherPair, lessonDate){
+    function onDelete(lessonUsernamePair, lessonDate){
         const prepDate = new Date(lessonDate);
         const [date, time, dayPart] = prepDate.toLocaleString().replace(",", "").replace(/\u202F/g, " ").split(" ");
         const [hour] = time.split(":");
         const timestamp = `${date} ${dayPart === "AM" ? hour + ":00" : parseInt(hour) + 12 + ":00"}`.replaceAll("/", "-")
         
-        const [teacherName] = lessonTeacherPair.split(" at ");
-        fetch(`${BASE_URL}/lessons/${user.id}/${teacherName.replace(" ", "_")}/${timestamp.replace(" ", "_")}`, {
+        const [username] = lessonUsernamePair.split(" at ");
+        fetch(`${BASE_URL}/lessons/${user.profileType.toLowerCase()}/${user.id}/${username.replace(" ", "_")}/${timestamp.replace(" ", "_")}`, {
             method: "DELETE"
           }).then(response => !response.ok ?  
             Alert.alert(
@@ -26,25 +26,32 @@ function LessonInfo({ day }){
             :
             Alert.alert(
                 title="Success",
-                message=`Your lesson with ${lessonTeacherPair} was deleted successfully!`
+                message=`Your lesson with ${lessonUsernamePair} was deleted successfully!`
             )
-           );
+            );
+            
+            setDates(prevDates => prevDates.map(prevDate => {
+                if (lessonUsernamePair in prevDate.lessons)
+                    delete prevDate.lessons[lessonUsernamePair];
+    
+                return prevDate;
+            }));
     }
 
     return (
         <View style={{...ComponentsStyles.lessonsContainer, minHeight: 300}}>
             <ScrollView style={{maxHeight: 300}}>
             {
-                dates.map((date) => (date.day === day ? Object.entries(date.lessons).map(([lessonTeacherPair, lessonDate], index) => {
+                dates.map((date) => (date.day === day ? Object.entries(date.lessons).map(([lessonUsernamePair, lessonDate], index) => {
                     return (
                         <View
-                        key={lessonTeacherPair + index}
-                        style={ComponentsStyles.lessonTeacherPair}>
+                        key={lessonUsernamePair + index}
+                        style={ComponentsStyles.lessonUserPair}>
                             <Text>
-                                {`You have a lesson with ${lessonTeacherPair}`}
+                                {`You have a lesson with ${lessonUsernamePair}`}
                             </Text>
                             <TouchableOpacity
-                                onPress={() => onDelete(lessonTeacherPair, lessonDate)}
+                                onPress={() => onDelete(lessonUsernamePair, lessonDate)}
                                 style={{...ComponentsStyles.button, ...ComponentsStyles.deleteLessonButton}}
                             >
                                 <Image 
