@@ -17,7 +17,12 @@ function ProfilePage(){
   const [prepDates, setPrepDates] = useState(generateDates());
   const [areDatesFetched, setAreDatesFetched] = useState(false);
   function onDelete(){
-    // TODO: Clean users listed hours from the server
+    // TODO: Complete for teachers
+    function deleteRelatedLessons(){
+      fetch(`${BASE_URL}/lessons/${user.id}`, {
+        method: "DELETE"
+      });
+    }
     function deleteUser(){
       fetch(`${BASE_URL}/${user.profileType.toLowerCase()}s/${user.id}`, {
         method: "DELETE"
@@ -27,6 +32,7 @@ function ProfilePage(){
           message = "An error occurred and we could not delete your profile!"
         ) : null
        ).then(() => {
+          deleteRelatedLessons();
           setPage("loginRegisterPage"); 
           setUser({});
           });

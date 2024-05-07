@@ -163,6 +163,7 @@ const ComponentsStyles = StyleSheet.create({
   topBorder: {
     borderTopColor: ColorPallete.mainBlue,
     borderTopWidth: 2,
+    borderRadius: 15
   },
   topBorderDark: {
     borderTopColor: ColorPallete.secondaryBlue,
@@ -194,6 +195,7 @@ const ComponentsStyles = StyleSheet.create({
     alignItems: 'center'
   },
   lessonsContainer: {
+    width: '98%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -202,6 +204,7 @@ const ComponentsStyles = StyleSheet.create({
   },
   weekContainer:{
     gap: 10,
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -229,6 +232,7 @@ const ComponentsStyles = StyleSheet.create({
     width: 150
   },
   profileContent: {
+    minWidth: '95%',
     backgroundColor: ColorPallete.secondaryBlue,
     borderRadius: 10,
     paddingVertical: 20,
@@ -238,9 +242,9 @@ const ComponentsStyles = StyleSheet.create({
   lessonTeacherPair: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 10
+    gap: 10,
   },
   debugBorder: {
     borderColor: 'red',

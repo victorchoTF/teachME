@@ -32,7 +32,7 @@ function LessonInfo({ day }){
     }
 
     return (
-        <View>
+        <View style={{...ComponentsStyles.lessonsContainer, minHeight: 300}}>
             <ScrollView style={{maxHeight: 300}}>
             {
                 dates.map((date) => (date.day === day ? Object.entries(date.lessons).map(([lessonTeacherPair, lessonDate], index) => {
@@ -59,7 +59,7 @@ function LessonInfo({ day }){
             }
             {
                 dates.map((date, index) => (Object.keys(date.lessons).length === 0 && date.day === day ? 
-                        <Text key={index}>
+                        <Text key={index} style={{width: '100%', marginVertical: 10, textAlign: "center"}}>
                             You have no lessons assigned for today
                         </Text>
                     : null))

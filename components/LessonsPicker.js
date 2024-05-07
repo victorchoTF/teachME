@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { useLessonContext } from '../contexts/LessonContext';
 import { useDateContext } from "../contexts/DateContext";
@@ -39,6 +39,13 @@ function LessonsPicker({ day }){
                         }}
                     />
             ))}
+            {
+                Object.keys(pickedLessons).length === 0 ? 
+                        <Text style={{width: '100%', marginVertical: 10, textAlign: "center"}}>
+                            There are no available lessons for this day
+                        </Text>
+                : null
+            }
         </View>
     );
 }
